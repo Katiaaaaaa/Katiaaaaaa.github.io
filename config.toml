@@ -2,6 +2,14 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
+PygmentsCodeFences = true # Enable syntax highlighting with GitHub flavoured code fences
+PygmentsUseClasses = true # Use CSS classes to format highlighted code
+PygmentsCodefencesGuessSyntax = true
+PygmentsOptions = "linenos=table"  # show line no
+publishDir = "docs"
+
+
+
 baseURL = "http://localhost:1313/"
 title = "西语的味道-博客"
 enableRobotsTXT = true

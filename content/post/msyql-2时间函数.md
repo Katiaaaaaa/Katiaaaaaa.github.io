@@ -6,9 +6,9 @@ categories: ["MySQL"]
 author: "Katia"
 ---
 
-* datediff(),tiemstamp()
-* 日期格式
-* 限制日期条件
+> * datediff(),tiemstamp()
+> * 日期格式
+> * 限制日期条件
 
 <!--more-->
 
@@ -18,7 +18,7 @@ datediff(date1,date2)=date1-date2
 timestampdiff(timetype,date1,date2)=date2-date1  
 timetype = 'day','hour','second'...
 
-```mysql
+```sql
 #找出第二天销售额多余第一天销售额的日期和销售额，产品id
 Select a.id, a.date, a.amount  from sales a cross join sales b
 On diffdate(a.date – b.date) = 1
@@ -30,7 +30,7 @@ Where a.amount > b.amount；
 
 **DATE_FORMA(date, format)**
 
-```mysql
+```sql
 date_format(pay_date,'%Y-%m') as pay_month
 ```
 
@@ -85,7 +85,7 @@ sales table:
 | 3         | 3          | 4        | 2019-05-13 | 2        | 2800  |
 
 
-```mysql
+```sql
 #产品分组，having筛选出时间最值
 select s.product_id, product_name from product p 
 inner join sales s 

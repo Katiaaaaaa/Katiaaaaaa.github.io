@@ -17,7 +17,7 @@ author: "Katia"
 ## order by + limit 
 
 **使用：不需要分组的情况下取出最值**
-```mysql
+```sql
 #成绩倒叙排列，取出第一名
 select name, score from scores
 order by score desc
@@ -34,7 +34,7 @@ limit 0,1;
 | 2  | 200    |
 | 3  | 300    |
 
-```mysql
+```sql
 # 函数定义n=n-1, := 为变量赋值
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
@@ -50,7 +50,7 @@ END
 ## max()函数
 
 **使用：group by + max()**
-```mysql
+```sql
 #班级分组聚合，取出最值
 select class, max(score) from scores
 group by class;
@@ -59,7 +59,7 @@ group by class;
 
 **拓展：取出第二名成绩**
 使用：max()返回最大值作为虚拟表
-```mysql
+```sql
 select max(distinct score) from scores
 where score < (
 	select max(distinct score) from scores);
@@ -67,7 +67,54 @@ where score < (
 注意：分组聚合返回两列值(分组列和聚合列)
 
 
-**拓展：分组聚合作为虚拟表再次分组聚合**
+
+**拓展: 子查询对应关系 表连接取最值**
+
+Employee 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id  
+
+| Id | Name  | Salary | DepartmentId |
+| :-----: | :-----:  | :-----:  |:-----:  |
+| 1  | Joe   | 70000  | 1            |
+| 2  | Henry | 80000  | 2            |
+| 3  | Sam   | 60000  | 2            |
+| 4  | Max   | 90000  | 1            |
+
+
+Department 表包含公司所有部门的信息。  
+
+
+| Id | Name     |
+| :-----: | :-----:  | 
+| 1  | IT       |
+| 2  | Sales    |
+
+找出每个部门工资最高的员工
+
+思路：  
+对employee表分组聚合取出每个部门的最高员工工资  
+内连接两表 并用子查询限定 部门和最高员工工资的关系
+
+```sql
+SELECT
+	Department.NAME AS Department,
+	Employee.NAME AS Employee,
+	Salary 
+FROM
+	Employee,Department 
+WHERE
+	Employee.DepartmentId = Department.Id 
+	AND ( Employee.DepartmentId, Salary )   
+
+IN (SELECT DepartmentId, max( Salary ) 
+        FROM Employee 
+        GROUP BY DepartmentId )
+```
+
+
+
+
+
+**拓展：分组聚合作为虚拟表 再次分组聚合**
 
 编写一个 SQL 查询，以查询从今天起最多 90 天内，每个日期该日期首次登录的用户数。
 假设今天是 2019-06-30.
@@ -93,7 +140,7 @@ Traffic 表：
 
 来源：力扣（LeetCode）
 
-```mysql 
+```sql 
 #用户id分组，取出每位用户最早登陆时间作为虚拟表
 #限制时间条件
 #虚拟表中以最早登陆时间分组，对用户id计数
@@ -123,7 +170,7 @@ group by login_date;
 1. 大于或大于等于all 大于所有
 2. 小于或小于等于all 小于所有
 
-```mysql
+```sql
 #查询雇员中的姓名和工资，这些雇员的工资不低于职位为manager的工资
 select name, sal from employee where sal>
 any(select sal from employee where job = 'manager');
