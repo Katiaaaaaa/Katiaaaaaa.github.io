@@ -11,7 +11,7 @@ publishDir = "docs"
 
 
 baseURL = "http://localhost:1313/"
-title = "西语的味道-博客"
+title = "Katia-blog"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
