@@ -1,0 +1,1373 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Katia-blog</title><link>http://localhost:1313/</link><description>Recent content on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>http://localhost:1313/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>http://localhost:1313/about/</guid><description>&lt;p>大家好，我是张慧晴&lt;/p>
+&lt;p>It makes use of a variety of open source projects including:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/spf13/cobra">Cobra&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/viper">Viper&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>MySQL(9)--建，删，更新表</title><link>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>case when 在带条件筛选中的运用&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>MySQL(10)--索引 视图</title><link>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>case when 在带条件筛选中的运用&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>MySQL(4)--常用函数总结</title><link>http://localhost:1313/post/mysql-4%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-4%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>单行函数&lt;/li>
+&lt;li>分组函数&lt;/li>
+&lt;li>窗口函数&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="单行函数">单行函数&lt;/h2>
+&lt;h3 id="字符串函数">字符串函数&lt;/h3>
+&lt;p>&lt;strong>1. length&lt;/strong>&lt;br>
+获取参数值的字节个数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="k">LENGTH&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;katia哈密瓜&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="n">utf8中一个汉字3字节一个字母1字节&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">看系统编码方式：&lt;/span>
+&lt;span class="k">SHOW&lt;/span> &lt;span class="n">VARIABLES&lt;/span> &lt;span class="k">LIKE&lt;/span> &lt;span class="s1">&amp;#39;%char%&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>2. concat&lt;/strong>&lt;br>
+拼接字符串&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">concat&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">last_name&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">first_name&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="k">from&lt;/span>
+&lt;span class="n">employee&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>3. upper/lower&lt;/strong>&lt;br>
+大小写转换&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">concat&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">upper&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">last_name&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="k">lower&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">first_name&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">employee&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>4. substr/substring&lt;/strong> 根据索引截取字符&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">截取从指定索引处后面的所有字符&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">substr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;无敌爆炸产出&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">super&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">截取从指定索引处指定字符长度的字符&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">SUBSTR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;无敌爆炸产出&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">案例：名字中首字符大学，其他字符小写&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">CONCAT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">UPPER&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SUBSTR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">last_name&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)),&lt;/span>&lt;span class="k">LOWER&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SUBSTR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">last_name&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employees&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>5. instr&lt;/strong> 返回字符串第一次出现的索引，找不到返回9&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">instr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;无敌爆炸产出&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;爆&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>6. trim&lt;/strong> 去掉字符前后的符号，没有规定符号的话默认去掉空格&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">trim&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39; 无敌 &amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="k">trim&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;a&amp;#39;&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="s1">&amp;#39;aaaa无aa敌aaa&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>7. lpad rpad&lt;/strong> 用指定的字符实现左填充指定长调度，超过的话从右边截断&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;pikaqiu&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;biu&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span> &lt;span class="n">biubpikaqiu&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;pikaqiu&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;biu&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span> &lt;span class="n">pi&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>rpad从右实现，同理&lt;/p>
+&lt;p>&lt;strong>8. replace&lt;/strong> 替换&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">replace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;司凤是男主吧&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;男&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;女&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="数学函数">数学函数&lt;/h2>
+&lt;h3 id="1-round">&lt;strong>1. round&lt;/strong>&lt;/h3>
+&lt;p>四舍五入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">round&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">#&lt;/span>&lt;span class="err">默认保留&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="err">位小数&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">round&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">#&lt;/span>&lt;span class="err">保留一位小数&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-ceil-floor">&lt;strong>2. ceil, floor&lt;/strong>&lt;/h3>
+&lt;p>向上取整 返回整数&amp;gt;=该参数最小整数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">ceil&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">054&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">#&lt;/span>&lt;span class="mi">3&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">ceil&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">054&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">#-&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>floor 向下取整 返回整数&amp;lt;=该参数最小整数&lt;/p>
+&lt;h3 id="3-truncate">&lt;strong>3. truncate&lt;/strong>&lt;/h3>
+&lt;p>截断&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">truncate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">1415926&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">保留一位小数&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="4-mod">&lt;strong>4. mod&lt;/strong>&lt;/h3>
+&lt;p>求余数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">mod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="日期函数">日期函数&lt;/h2>
+&lt;h3 id="1-返回时间">&lt;strong>1. 返回时间&lt;/strong>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">now&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">curdate&lt;/span>&lt;span class="p">();&lt;/span> &lt;span class="err">只返回日期&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">curtime&lt;/span>&lt;span class="p">();&lt;/span> &lt;span class="err">只返回时间&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-字符日期转换">&lt;strong>2. 字符日期转换&lt;/strong>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="n">date_format&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">将日期转换成字符&lt;/span>
+&lt;span class="n">str_to_date&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">将字符转换成日期&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="3获取指定的部分年月日等">&lt;strong>3.获取指定的部分：年、月、日等&lt;/strong>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">Year&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="k">Year&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">first_login&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">players&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>monthname:以英文的形式返回月&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">monthname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">first_login&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">players&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="4获取时间间隔">&lt;strong>4.获取时间间隔&lt;/strong>&lt;/h3>
+&lt;p>datediff()&lt;br>
+tiemstamp()&lt;/p>
+&lt;h2 id="流程控制函数">流程控制函数&lt;/h2>
+&lt;h3 id="1-if函数">&lt;strong>1. if函数&lt;/strong>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;10&amp;gt;5&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;大&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;小&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-ifnull函数">&lt;strong>2. ifnull函数&lt;/strong>&lt;/h3>
+&lt;p>ifnull(value1, value2)&lt;br>
+如果value1不为空返回value1,否则返回value2&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">如果没有数学第二高的成绩，返回空值&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">ifnull&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">distinct&lt;/span> &lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">score&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;math&amp;#39;&lt;/span>&lt;span class="p">)),&lt;/span>&lt;span class="k">null&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">as&lt;/span> &lt;span class="s1">&amp;#39;TheSecondHighest_math_score&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="3-case函数">&lt;strong>3. case函数&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>等值判断&lt;br>
+case 要判断的字段或表达式&lt;br>
+when 常量1 then 要显示的值或语句;&lt;br>
+when 常量2 then 要显示的值或语句;&lt;br>
+&amp;hellip;&amp;hellip;.&lt;br>
+else 常量n then 要显示的值或语句;&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">案例：查询员工的公司，要求&lt;/span> &lt;span class="err">部门号&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="err">，显示的工资&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="err">，&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">部门号&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="err">，显示的工资&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="err">，部门号&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="err">，显示的工资&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">...&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="err">原始工资&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">department_id&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">CASE&lt;/span> &lt;span class="n">department_id&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="mi">30&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="mi">40&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="mi">50&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>
+&lt;span class="k">ELSE&lt;/span> &lt;span class="n">salary&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">new_salary&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employees&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>类似多重if判断，用于判断区间&lt;br>
+case&lt;br>
+when 条件1 then 要显示的值或语句&lt;br>
+when 条件2 then 要显示的值或语句&lt;br>
+when 条件3 then 要显示的值或语句&lt;br>
+&amp;hellip;&amp;hellip;&lt;br>
+else 要显示的值或语句&lt;br>
+end;&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">案例：查询员工工资情况，工资&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">20000&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">15000&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">10000&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">C&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">否则&lt;/span>&lt;span class="n">D&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="p">,(&lt;/span>&lt;span class="err">这有个逗号&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">20000&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="s1">&amp;#39;A&amp;#39;&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">15000&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="s1">&amp;#39;B&amp;#39;&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="n">salary&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">10000&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="s1">&amp;#39;C&amp;#39;&lt;/span>
+&lt;span class="k">ELSE&lt;/span> &lt;span class="s1">&amp;#39;D&amp;#39;&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="err">工资级别&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employees&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="分组函数统计函数">分组函数/统计函数&lt;/h2>
+&lt;h3 id="sumavgminmaxcount">&lt;strong>sum(),avg(),min(),max(),count()&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>sum,avg仅支持数值型，max,min支持字符型（按照首字母由A～Z的顺序排列，越往后，其值越大）&lt;/li>
+&lt;li>与分组函数一同查询的字段是group by后的字段&lt;/li>
+&lt;li>和distinct 搭配&lt;br>
+select sum(distinct salary), sum(salary) from salaries;&lt;/li>
+&lt;li>以上分组函数都忽略null&lt;/li>
+&lt;/ul>
+&lt;h2 id="窗口函数">窗口函数&lt;/h2>
+&lt;h3 id="窗口函数功能">&lt;strong>窗口函数功能&lt;/strong>&lt;/h3>
+&lt;p>window_function_name(expression)&lt;br>
+OVER ([partition_defintion] [order_definition]&lt;br>
+[frame_definition])&lt;/p>
+&lt;p>&lt;strong>Frame子句&lt;/strong>&lt;br>
+frame_type {boundaries} 子句用来定义子集的规则，通常用来作为滑动窗口使用&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>frame_type包括ROW、RANGE两种&lt;br>
+row frame基于 physical offsets ，即基于当前行的位置的偏移量确定计算窗口大小&lt;br>
+range frame基于 logical offsets ，即基于当前行的value值的偏移量来确定计算窗口大小&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>boundaries&lt;br>
+UNBOUNDED PRECEDING ， 分区的第一行&lt;br>
+N PRECEDING ，当前行的前向偏移量&lt;br>
+CURRENT ROW , 当前行
+N FOLLOWING ，当前行的后向偏移量&lt;br>
+UNBOUNDED FOLLOWING , 表示分区的最后一行&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>静态窗口&lt;/strong> &amp;ndash;无frame功能&lt;br>
+CUME_DIST(), DENSE_RANK(), LAG(),LEAD(),NTILE(), PERCENT_RANK(),RANK(),ROW_NUMBER()&lt;/p>
+&lt;h3 id="1-序号函数">&lt;strong>1. 序号函数&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>row_number、rank、dense_rank&lt;/strong>&lt;br>
+rank() 排名重叠时，下一名次有间隔&lt;br>
+dense_rank() 排名重叠时，下一名次无间隔&lt;br>
+row_number() 依次排名递增&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">empno&lt;/th>
+&lt;th align="center">ename&lt;/th>
+&lt;th align="center">deptno&lt;/th>
+&lt;th align="center">sal&lt;/th>
+&lt;th align="center">num&lt;/th>
+&lt;th align="center">rank&lt;/th>
+&lt;th align="center">dense_rank&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">7839&lt;/td>
+&lt;td align="center">KING&lt;/td>
+&lt;td align="center">10&lt;/td>
+&lt;td align="center">5000.00&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7782&lt;/td>
+&lt;td align="center">CLARK&lt;/td>
+&lt;td align="center">10&lt;/td>
+&lt;td align="center">2450.00&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7934&lt;/td>
+&lt;td align="center">MILLER&lt;/td>
+&lt;td align="center">10&lt;/td>
+&lt;td align="center">1300.00&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7788&lt;/td>
+&lt;td align="center">SCOTT&lt;/td>
+&lt;td align="center">20&lt;/td>
+&lt;td align="center">3000.00&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7902&lt;/td>
+&lt;td align="center">FORD&lt;/td>
+&lt;td align="center">20&lt;/td>
+&lt;td align="center">3000.00&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7566&lt;/td>
+&lt;td align="center">JONES&lt;/td>
+&lt;td align="center">20&lt;/td>
+&lt;td align="center">2975.00&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7876&lt;/td>
+&lt;td align="center">ADAMS&lt;/td>
+&lt;td align="center">20&lt;/td>
+&lt;td align="center">1100.00&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7369&lt;/td>
+&lt;td align="center">SMITH&lt;/td>
+&lt;td align="center">20&lt;/td>
+&lt;td align="center">800.00&lt;/td>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7698&lt;/td>
+&lt;td align="center">BLAKE&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">2850.00&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7499&lt;/td>
+&lt;td align="center">ALLEN&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">1600.00&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7844&lt;/td>
+&lt;td align="center">TURNER&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">1500.00&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7521&lt;/td>
+&lt;td align="center">WARD&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">1250.00&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7654&lt;/td>
+&lt;td align="center">MARTIN&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">1250.00&lt;/td>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7900&lt;/td>
+&lt;td align="center">JAMES&lt;/td>
+&lt;td align="center">30&lt;/td>
+&lt;td align="center">950.00&lt;/td>
+&lt;td align="center">6&lt;/td>
+&lt;td align="center">6&lt;/td>
+&lt;td align="center">5&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="2-分布函数">&lt;strong>2. 分布函数&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>percent_rank()/cume_dist()&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>percent_rank()：(rank - 1) / (rows - 1)&lt;br>
+rank为RANK()函数产生的序号，rows为当前窗口的记录总行数。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>cume_dist()&lt;br>
+用途：分组内小于等于当前rank值的行数/分组内总行数&lt;br>
+应用场景：大于等于当前订单金额的订单比例有多少&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-前后函数">&lt;strong>3. 前后函数&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>lead(expre,n)/lag(expre,n)&lt;/strong>&lt;br>
+用途：分区中位于当前行前n行（lead）/后n行(lag)的记录值。&lt;br>
+使用场景：查询上一个订单距离当前订单的时间间隔。&lt;/p>
+&lt;h3 id="4-头尾函数">&lt;strong>4. 头尾函数&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>first_val(expr)/last_val(expr)&lt;/strong>&lt;br>
+用途：得到分区中的第一个/最后一个指定参数的值。&lt;br>
+使用场景：查询截止到当前订单，按照日期排序第一个订单和最后一个订单的订单金额。&lt;/p>
+&lt;h3 id="5-其他函数">&lt;strong>5. 其他函数&lt;/strong>&lt;/h3>
+&lt;p>nth_value(expr,n)/nfile(n）&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>nth_value(expr,n)&lt;br>
+用途：返回窗口中第N个expr的值，expr可以是表达式，也可以是列名。
+应用场景：每个用户订单中显示本用户金额排名第二和第三的订单金额。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>nfile(n)&lt;br>
+用途：将分区中的有序数据分为n个桶，记录桶号。&lt;br>
+应用场景：将每个用户的订单按照订单金额分成3组。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="6-聚合函数作为窗口函数">&lt;strong>6. 聚合函数作为窗口函数&lt;/strong>&lt;/h3>
+&lt;p>用途：在窗口中每条记录动态应用聚合函数(sum/avg/max/min/count)，可以动态计算在指定的窗口内的各种聚合函数值。&lt;br>
+应用场景：每个用户按照订单id，截止到当前的累计订单金额/平均订单金额/最大订单金额/最小订单金额/订单数是多少？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">order_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">user_no&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">amount&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">amount&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">over&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">sum1&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">amount&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">over&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">avg1&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">amount&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">over&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">max1&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">amount&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">over&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">count1&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="k">order&lt;/span>
+&lt;span class="n">window&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">partition&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">user_no&lt;/span> &lt;span class="k">order&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">order_id&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MySQL(5)--case when 运用计算</title><link>http://localhost:1313/post/mysql-5%E5%B8%A6%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-5%E5%B8%A6%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>case when 在带条件筛选中的运用&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="输出占比">输出占比&lt;/h2>
+&lt;p>统计每个班同学各科成绩平均分大于80分的人数和人数占比&lt;br>
+table student: name, id, class, age, major&lt;br>
+table score: id, class_id, score&lt;/p>
+&lt;p>（1）每位同学的平均成绩&lt;br>
+（2）平均分大于80分的人数&lt;br>
+（3）平均分大于80分的人数占比&lt;br>
+（4）输出结果是班级，平均分大于80分的人数，平均分大于80分的人数占比&lt;/p>
+&lt;p>-每位同学的平均成绩&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">avg_score&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>-平均分大于80分的人数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">case&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">80&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">end&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">num&lt;/span> &lt;span class="k">from&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">avg_score&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>-平均分大于80分的人数占比&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">case&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">80&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">end&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>
+&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">percentage&lt;/span>
+&lt;span class="k">from&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">avg_score&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>-输出结果是班级、人数、人数占比&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">class&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">num&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">percentage&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">student&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">s&lt;/span>
+&lt;span class="k">left&lt;/span> &lt;span class="k">join&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="k">on&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="k">class&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>-综合&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">class&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">case&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">80&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">end&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">num&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">case&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">80&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">end&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">percentage&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">student&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="k">left&lt;/span> &lt;span class="k">join&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">avg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">avg_score&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="k">on&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>模板总结： 有筛选条件的统计数量问题&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">判断表达式&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">end&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="err">数量&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="k">table&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://files.catbox.moe/dhgyoy.png" alt="">&lt;/p>
+&lt;p>&lt;a href="http://music.163.com/song/28287132/?userid=446906676">http://music.163.com/song/28287132/?userid=446906676&lt;/a>&lt;/p></description></item><item><title>MySQL(6)--select执行语句顺序</title><link>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>select-&amp;gt; from-&amp;gt; where-&amp;gt; group by-&amp;gt; max()-&amp;gt; having-&amp;gt; order by&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">max_score&lt;/span>
+&lt;span class="k">from&lt;/span> &lt;span class="n">grade&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="k">is&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">name&lt;/span>
+&lt;span class="k">having&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">600&lt;/span>
+&lt;span class="k">order&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">max_score&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>select-&amp;gt; from-&amp;gt; where-&amp;gt; group by-&amp;gt; max()-&amp;gt; having-&amp;gt; order by&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>首先执行from子句,从grade表的数据源&lt;/li>
+&lt;li>执行where语句，筛选grade表中不为null的数据&lt;/li>
+&lt;li>执行group by 语句，把grade表按name分组&lt;br>
+&lt;strong>(此处才可以使用select中的别名)&lt;/strong>&lt;/li>
+&lt;li>计算max()聚集函数，从score中分组筛选最大数值&lt;/li>
+&lt;li>执行having子句，筛选score大于600分的数据&lt;/li>
+&lt;li>执行order by 子句，结果按照max_score列排序&lt;/li>
+&lt;/ul></description></item><item><title>MySQL(7)--表连接类型</title><link>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>内连接&lt;/li>
+&lt;li>外连接&lt;/li>
+&lt;li>交叉连接&lt;/li>
+&lt;li>union,union all&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>MySQL(8)--行列转换</title><link>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>case when 运用&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>MySQL(1)--最值处理</title><link>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</link><pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>order by + limit offset&lt;/li>
+&lt;li>大于等于 max()&lt;/li>
+&lt;li>group by 分组聚合&lt;/li>
+&lt;li>最值比较 any, all&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="order-by--limit">order by + limit&lt;/h2>
+&lt;p>&lt;strong>使用：不需要分组的情况下取出最值&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">成绩倒叙排列，取出第一名&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span>
+&lt;span class="k">order&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="k">desc&lt;/span>
+&lt;span class="k">limit&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>拓展：函数定义&lt;/strong>&lt;/p>
+&lt;p>获取 Employee 表中第 n 高的薪水（Salary）&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">&lt;center>Id&lt;/center>&lt;/th>
+&lt;th align="center">&lt;center>Salary &lt;/center>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">100&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">200&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">300&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span> &lt;span class="err">函数定义&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="err">为变量赋值&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="n">getNthHighestSalary&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">N&lt;/span> &lt;span class="nb">INT&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">RETURNS&lt;/span> &lt;span class="nb">INT&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">SET&lt;/span> &lt;span class="n">N&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">N&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">RETURN&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">SELECT&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span>
+&lt;span class="k">GROUP&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">salary&lt;/span>
+&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="k">DESC&lt;/span>
+&lt;span class="k">LIMIT&lt;/span> &lt;span class="n">N&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">END&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="max函数">max()函数&lt;/h2>
+&lt;p>&lt;strong>使用：group by + max()&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">班级分组聚合，取出最值&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>拓展：取出第二名成绩&lt;/strong>
+使用：max()返回最大值作为虚拟表&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">distinct&lt;/span> &lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">score&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">distinct&lt;/span> &lt;span class="n">score&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">scores&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意：分组聚合返回两列值(分组列和聚合列)&lt;/p>
+&lt;p>&lt;strong>拓展: 子查询对应关系 表连接取最值&lt;/strong>&lt;/p>
+&lt;p>Employee 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">Id&lt;/th>
+&lt;th align="center">Name&lt;/th>
+&lt;th align="center">Salary&lt;/th>
+&lt;th align="center">DepartmentId&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">Joe&lt;/td>
+&lt;td align="center">70000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">Henry&lt;/td>
+&lt;td align="center">80000&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">Sam&lt;/td>
+&lt;td align="center">60000&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">Max&lt;/td>
+&lt;td align="center">90000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Department 表包含公司所有部门的信息。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">Id&lt;/th>
+&lt;th align="center">Name&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">IT&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">Sales&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>找出每个部门工资最高的员工&lt;/p>
+&lt;p>思路：&lt;br>
+对employee表分组聚合取出每个部门的最高员工工资&lt;br>
+内连接两表 并用子查询限定 部门和最高员工工资的关系&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span>
+&lt;span class="n">Department&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">NAME&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Department&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">Employee&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">NAME&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Employee&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">Salary&lt;/span>
+&lt;span class="k">FROM&lt;/span>
+&lt;span class="n">Employee&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">Department&lt;/span>
+&lt;span class="k">WHERE&lt;/span>
+&lt;span class="n">Employee&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DepartmentId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Department&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Id&lt;/span>
+&lt;span class="k">AND&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">Employee&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DepartmentId&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Salary&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="k">IN&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">SELECT&lt;/span> &lt;span class="n">DepartmentId&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">Salary&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">Employee&lt;/span>
+&lt;span class="k">GROUP&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">DepartmentId&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>拓展：分组聚合作为虚拟表 再次分组聚合&lt;/strong>&lt;/p>
+&lt;p>编写一个 SQL 查询，以查询从今天起最多 90 天内，每个日期该日期首次登录的用户数。
+假设今天是 2019-06-30.
+Traffic 表：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">&lt;center>user_id&lt;/center>&lt;/th>
+&lt;th align="center">&lt;center>activity&lt;/center>&lt;/th>
+&lt;th align="center">&lt;center>activity_date &lt;/center>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-05-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">homepage&lt;/td>
+&lt;td align="center">2019-05-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-05-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-01-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">jobs&lt;/td>
+&lt;td align="center">2019-01-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-01-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">groups&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-03-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-03-01&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">login&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">logout&lt;/td>
+&lt;td align="center">2019-06-21&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>来源：力扣（LeetCode）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">用户&lt;/span>&lt;span class="n">id分组&lt;/span>&lt;span class="err">，取出每位用户最早登陆时间作为虚拟表&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">限制时间条件&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">虚拟表中以最早登陆时间分组，对用户&lt;/span>&lt;span class="n">id计数&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">login_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user_id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">user_count&lt;/span>
+&lt;span class="k">from&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">user_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">activity_date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">login_date&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">Traffic&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">activity&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;login&amp;#39;&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">user_id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">t&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">datediff&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;2019-06-30&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">login_date&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="mi">90&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">login_date&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="any-all关键字">any, all关键字&lt;/h2>
+&lt;p>&lt;strong>any&lt;/strong> 标识主查询的条件为满足子查询返回查询结果中任意一条数据记录&lt;/p>
+&lt;p>匹配模式：&lt;/p>
+&lt;ol>
+&lt;li>=any 等同于in关键字&lt;/li>
+&lt;li>大于或大于等于any 比子查询返回的最小数据 要大的数据&lt;/li>
+&lt;li>小于或小于等于any 比子查询返回的最大数据 要小的数据&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>all&lt;/strong> 表示主查询的条件为满足子查询返回结果中的所有记录&lt;/p>
+&lt;p>匹配模式：&lt;/p>
+&lt;ol>
+&lt;li>大于或大于等于all 大于所有&lt;/li>
+&lt;li>小于或小于等于all 小于所有&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">查询雇员中的姓名和工资，这些雇员的工资不低于职位为&lt;/span>&lt;span class="n">manager的工资&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sal&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">sal&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;span class="k">any&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">sal&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">job&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;manager&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">查询雇员的姓名和工资，这些雇员的工资高于职位为&lt;/span>&lt;span class="n">manager的工资&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sal&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">sal&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;span class="k">all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span> &lt;span class="n">sal&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">job&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;manager&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MySQL(2)--日期函数及格式</title><link>http://localhost:1313/post/msyql-2%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0/</link><pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/msyql-2%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>datediff(),tiemstamp()&lt;/li>
+&lt;li>日期格式&lt;/li>
+&lt;li>限制日期条件&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="时间函数">时间函数&lt;/h2>
+&lt;p>datediff(date1,date2)=date1-date2&lt;/p>
+&lt;p>timestampdiff(timetype,date1,date2)=date2-date1&lt;br>
+timetype = &amp;lsquo;day&amp;rsquo;,&amp;lsquo;hour&amp;rsquo;,&amp;lsquo;second&amp;rsquo;&amp;hellip;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">找出第二天销售额多余第一天销售额的日期和销售额，产品&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;span class="k">Select&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">sales&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="k">cross&lt;/span> &lt;span class="k">join&lt;/span> &lt;span class="n">sales&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;span class="k">On&lt;/span> &lt;span class="n">diffdate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">date&lt;/span> &lt;span class="err">–&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">Where&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span>&lt;span class="err">；&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="日期格式">日期格式&lt;/h2>
+&lt;p>&lt;strong>DATE_FORMA(date, format)&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="n">date_format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pay_date&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;%Y-%m&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">pay_month&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>%S,%s 两位数字形式的秒（ 01, . . ., 59）&lt;br>
+%i 两位数字形式的分&lt;br>
+%H 两位数字形式的小时，24 小时&lt;br>
+%h, %I 两位数字形式的小时，12 小时（01,02, . . ., 12）&lt;br>
+%k 数字形式的小时，24 小时（0,1, . . ., 23）&lt;br>
+%l 数字形式的小时，12 小时（1, 2, . . ., 12）&lt;br>
+%T 24 小时的时间形式（h h : m m : s s）&lt;br>
+%r 12 小时的时间形式（hh:mm:ss AM 或hh:mm:ss PM）&lt;br>
+%p AM 或P M&lt;br>
+%W 一周中每一天的名称（ S u n d a y, Monday, . . ., Saturday）&lt;br>
+%a 一周中每一天名称的缩写（ Sun, Mon, . . ., Sat）&lt;br>
+%d 两位数字表示月中的天数（ 00, 01, . . ., 31）&lt;br>
+%e 数字形式表示月中的天数（ 1, 2， . . ., 31）&lt;br>
+%D 英文后缀表示月中的天数（ 1st, 2nd, 3rd, . . .）&lt;br>
+%w 以数字形式表示周中的天数（ 0 = S u n d a y, 1=Monday, . . ., 6=Saturday）&lt;br>
+%j 以三位数字表示年中的天数（ 001, 002, . . ., 366）&lt;br>
+% U 周（0, 1, 52），其中Sunday 为周中的第一天&lt;br>
+%u 周（0, 1, 52），其中Monday 为周中的第一天&lt;br>
+%M 月名（J a n u a r y, February, . . ., December）&lt;br>
+%b 缩写的月名（ J a n u a r y, February, . . ., December）&lt;br>
+%m 两位数字表示的月份（ 01, 02, . . ., 12）&lt;br>
+%c 数字表示的月份（ 1, 2, . . ., 12）&lt;br>
+%Y 四位数字表示的年份&lt;br>
+%y 两位数字表示的年份&lt;br>
+%% 直接值“%”&lt;/p>
+&lt;h2 id="时间段筛选">时间段筛选&lt;/h2>
+&lt;p>&lt;strong>max(),min() 创建时间段&lt;/strong>&lt;/p>
+&lt;p>报告2019年春季才售出的产品。
+即仅在2019-01-01至2019-03-31（含）之间出售的商品。&lt;/p>
+&lt;p>table product:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">product_id&lt;/th>
+&lt;th align="center">product_name&lt;/th>
+&lt;th align="center">unit_price&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">S8&lt;/td>
+&lt;td align="center">1000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">G4&lt;/td>
+&lt;td align="center">800&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">iPhone&lt;/td>
+&lt;td align="center">1400&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>sales table:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">seller_id&lt;/th>
+&lt;th align="center">product_id&lt;/th>
+&lt;th align="center">buyer_id&lt;/th>
+&lt;th align="center">sale_date&lt;/th>
+&lt;th align="center">quantity&lt;/th>
+&lt;th align="center">price&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">2019-01-21&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2019-02-17&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">800&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">2019-06-02&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">800&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">2019-05-13&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2800&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">产品分组，&lt;/span>&lt;span class="n">having筛选出时间最值&lt;/span>
+&lt;span class="k">select&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">product_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">product_name&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">product&lt;/span> &lt;span class="n">p&lt;/span>
+&lt;span class="k">inner&lt;/span> &lt;span class="k">join&lt;/span> &lt;span class="n">sales&lt;/span> &lt;span class="n">s&lt;/span>
+&lt;span class="k">on&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">product_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">product_id&lt;/span>
+&lt;span class="k">group&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">product_id&lt;/span>
+&lt;span class="k">having&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sale_date&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="s1">&amp;#39;2019-03-31&amp;#39;&lt;/span> &lt;span class="k">and&lt;/span> &lt;span class="k">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sale_date&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="s1">&amp;#39;2019-01-01&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>between &amp;lsquo;date1&amp;rsquo; and &amp;lsquo;date2&amp;rsquo;&lt;/strong>&lt;/p></description></item><item><title>MySQL(3)--排名问题</title><link>http://localhost:1313/post/mysql-3%E6%8E%92%E5%90%8D%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-3%E6%8E%92%E5%90%8D%E9%97%AE%E9%A2%98/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>Top N&lt;/li>
+&lt;li>分组排名,每组前几名&lt;/li>
+&lt;li>组内比较(最值问题)&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h5 id="top-n-查找前20的数据">Top N 查找前20%的数据&lt;/h5>
+&lt;p>用户访问次数表 visit，列名包括user_id、user_type、visit_time。&lt;br>
+要求在剔除访问次数前20%的用户后，每类用户的平均访问次数&lt;/p>
+&lt;p>1）找出访问次数前20%的用户&lt;br>
+2）剔除访问次数前20%的用户&lt;br>
+3）每类用户的平均访问次数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">窗口函数给用户访问量排名&lt;/span>
+&lt;span class="k">Select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">Select&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">row_number&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="n">over&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">order&lt;/span> &lt;span class="k">by&lt;/span> &lt;span class="n">visit_time&lt;/span> &lt;span class="k">desc&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">rank&lt;/span>
+&lt;span class="k">From&lt;/span> &lt;span class="n">visit&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="n">rank&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rank&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">剔除前&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="o">%&lt;/span>
+&lt;span class="k">Select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">rank&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">Select&lt;/span> &lt;span class="k">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rank&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">每类用户的平均访问次数&lt;/span> &lt;span class="err">分组聚合&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="k">AVG&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">visit_time&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="k">type&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">row_number&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="n">OVER&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">visit_time&lt;/span> &lt;span class="k">DESC&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">rank&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">visit&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;span class="k">WHERE&lt;/span> &lt;span class="n">rank&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="k">MAX&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rank&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;span class="k">GROUP&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="k">type&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="每组前三名的薪水">每组前三名的薪水&lt;/h5>
+&lt;p>找出每个部门获得前三高工资的所有员工&lt;/p>
+&lt;p>employee:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">Id&lt;/th>
+&lt;th align="center">Name&lt;/th>
+&lt;th align="center">Salary&lt;/th>
+&lt;th align="center">DepartmentId&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">Joe&lt;/td>
+&lt;td align="center">85000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">Henry&lt;/td>
+&lt;td align="center">80000&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">Sam&lt;/td>
+&lt;td align="center">60000&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">Max&lt;/td>
+&lt;td align="center">90000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">Janet&lt;/td>
+&lt;td align="center">69000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">6&lt;/td>
+&lt;td align="center">Randy&lt;/td>
+&lt;td align="center">85000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">7&lt;/td>
+&lt;td align="center">Will&lt;/td>
+&lt;td align="center">70000&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>department:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">Id&lt;/th>
+&lt;th align="center">Name&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">IT&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">Sales&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>窗口函数解法&lt;/p>
+&lt;p>先对Employee表进行部门分组工资排名&lt;br>
+再关联Department表查询部门名称&lt;br>
+再使用WHERE筛选出排名小于等于3的数据&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Name&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Department&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Name&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Employee&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Salary&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">DENSE_RANK&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="n">OVER&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">PARTITION&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">DepartmentId&lt;/span>
+&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">Salary&lt;/span> &lt;span class="k">DESC&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">ranking&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">DepartmentId&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Salary&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">Employee&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">A&lt;/span>
+&lt;span class="k">JOIN&lt;/span> &lt;span class="n">Department&lt;/span> &lt;span class="n">B&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DepartmentId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;span class="k">WHERE&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ranking&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
