@@ -6,7 +6,6 @@ PygmentsCodeFences = true # Enable syntax highlighting with GitHub flavoured cod
 PygmentsUseClasses = true # Use CSS classes to format highlighted code
 PygmentsCodefencesGuessSyntax = true
 PygmentsOptions = "linenos=table"  # show line no
-publishDir = "docs"
 
 
 
