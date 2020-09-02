@@ -6,11 +6,769 @@
 &lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>MySQL(9)--建，删，更新表</title><link>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</guid><description>&lt;blockquote>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>MySQL(7)--多表查询</title><link>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</guid><description>&lt;blockquote>
 &lt;ul>
-&lt;li>case when 在带条件筛选中的运用&lt;/li>
+&lt;li>INNER JOIN 内连接&lt;/li>
+&lt;li>OUTER JOIN 外连接&lt;/li>
+&lt;li>CROSS JOIN 交叉连接&lt;/li>
+&lt;li>UNION 并集查询&lt;/li>
+&lt;li>自连接&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item><item><title>MySQL(10)--索引 视图</title><link>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</guid><description>&lt;blockquote>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://files.catbox.moe/43gwfq.png" alt="">&lt;/p>
+&lt;h2 id="内连接等值连接">&lt;strong>内连接/等值连接&lt;/strong>&lt;/h2>
+&lt;p>取两表交集部分 根据每个表共有的列的值匹配两个表中的行&lt;/p>
+&lt;ul>
+&lt;li>隐式内连接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">B&lt;/span>
+&lt;span class="k">WHERE&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>　　&lt;/p>
+&lt;ul>
+&lt;li>显式内连接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">A&lt;/span>
+&lt;span class="k">INNER&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">B&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>示例：&lt;/strong>&lt;br>
+employee:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">employee_id&lt;/th>
+&lt;th align="center">department_id&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>salary:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">id&lt;/th>
+&lt;th align="center">employee_id&lt;/th>
+&lt;th align="center">amount&lt;/th>
+&lt;th align="center">pay_date&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">9000&lt;/td>
+&lt;td align="center">2017-03-31&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;td align="center">2017-03-31&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">10000&lt;/td>
+&lt;td align="center">2017-03-31&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">7000&lt;/td>
+&lt;td align="center">2017-02-28&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;td align="center">2017-02-28&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">6&lt;/td>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">8000&lt;/td>
+&lt;td align="center">2017-02-28&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">department_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="n">e&lt;/span>
+&lt;span class="k">INNER&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>内连接表：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">employee_id&lt;/th>
+&lt;th align="center">department_id&lt;/th>
+&lt;th align="center">amount&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">9000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">10000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">7000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">8000&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="外连接">&lt;strong>外连接&lt;/strong>&lt;/h2>
+&lt;p>如果使用左连接，则主表在它左边；如果使用右连接，则主表在它右边
+查询结果以主表为主，从表记录匹配不到，则填充null&lt;/p>
+&lt;ul>
+&lt;li>左外连接: LEFT (OUTER) JOIN&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">department_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="n">e&lt;/span>
+&lt;span class="k">LEFT&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">department_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="n">e&lt;/span>
+&lt;span class="k">LEFT&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>
+&lt;span class="k">where&lt;/span> &lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>右外连接: RIGHT (OUTER) JOIN&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">department_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">amount&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="n">e&lt;/span>
+&lt;span class="k">RIGHT&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">salary&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">employee_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>取坐标&lt;/li>
+&lt;/ul>
+&lt;h2 id="交叉连接笛卡尔积">&lt;strong>交叉连接/笛卡尔积&lt;/strong>&lt;/h2>
+&lt;p>返回的结果为被连接的两个数据表的乘积&lt;/p>
+&lt;ul>
+&lt;li>隐式交叉连接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>显式交叉连接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">A&lt;/span>
+&lt;span class="k">CROSS&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="using子句简化表连接">using子句简化表连接&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span>
+&lt;span class="k">JOIN&lt;/span> &lt;span class="n">dept&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">employee&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deptno&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">dept&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deptno&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employee&lt;/span>
+&lt;span class="k">JOIN&lt;/span> &lt;span class="n">dept&lt;/span> &lt;span class="k">USING&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">deptno&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="三表连接">三表连接&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">last_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">first_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dept_name&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">employees&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;span class="k">LEFT&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">dept_emp&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">emp_no&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">emp_no&lt;/span>
+&lt;span class="k">LEFT&lt;/span> &lt;span class="k">JOIN&lt;/span> &lt;span class="n">departments&lt;/span> &lt;span class="k">c&lt;/span> &lt;span class="k">ON&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dept_no&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dept_no&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MySQL(8)--交换数据</title><link>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>行内容互换&lt;/li>
+&lt;li>行列内容转换&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="座位号互换">座位号互换&lt;/h2>
+&lt;p>有一张 seat 座位表，平时用来储存学生名字和与他们相对应的座位 id。其中纵列的 id 是连续递增的。 小美想改变相邻俩学生的座位。&lt;/p>
+&lt;p>seat:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">id&lt;/th>
+&lt;th align="center">student&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">Abbot&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">Doris&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">Emerson&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">4&lt;/td>
+&lt;td align="center">Green&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">5&lt;/td>
+&lt;td align="center">Jeames&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>在原表中插入一列叫做‘奇偶数’，对应表示“座位号”的值是“奇数”还是“偶数”。&lt;/p>
+&lt;p>1）如果原来座位号是奇数的学生，换座位后，这名学生的座位号变为“座位号+1”。&lt;br>
+2）如果原来座位号是偶数的学生，换座位后，这名学生的座位号变为“座位号-1”。&lt;/p>
+&lt;p>sql求余函数：mod(n,m) 返回n除以m的余数。如果n除以2的余数是0，说明n是偶数，否则是奇数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">mod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">AND&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="n">counts&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">mod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">AND&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">counts&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">id&lt;/span>
+&lt;span class="k">ELSE&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">student&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">seat&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="k">COUNT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">counts&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">seat&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="行列互换">行列互换&lt;/h3>
+&lt;p>Department:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">id&lt;/th>
+&lt;th align="center">revenue&lt;/th>
+&lt;th align="center">month&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">8000&lt;/td>
+&lt;td align="center">Jan&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">9000&lt;/td>
+&lt;td align="center">Jan&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">10000&lt;/td>
+&lt;td align="center">Feb&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">7000&lt;/td>
+&lt;td align="center">Feb&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;td align="center">Mar&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>来源：力扣（LeetCode）&lt;/p>
+&lt;p>编写一个 SQL 查询来重新格式化表，使得新的表中有一个部门 id 列和一些对应 每个月 的收入（revenue）列&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="center">id&lt;/th>
+&lt;th align="center">Jan_Revenue&lt;/th>
+&lt;th align="center">Feb_Revenue&lt;/th>
+&lt;th align="center">Mar_Revenue&lt;/th>
+&lt;th align="center">&amp;hellip;&lt;/th>
+&lt;th align="center">Dec_Revenue&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="center">1&lt;/td>
+&lt;td align="center">8000&lt;/td>
+&lt;td align="center">7000&lt;/td>
+&lt;td align="center">6000&lt;/td>
+&lt;td align="center">&amp;hellip;&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">2&lt;/td>
+&lt;td align="center">9000&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;td align="center">&amp;hellip;&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="center">3&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;td align="center">10000&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;td align="center">&amp;hellip;&lt;/td>
+&lt;td align="center">null&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>1. 输出行列互换的表结构&lt;/strong>
+Select id, Jan_Revenue, Feb_Revenue&amp;hellip; Dec_Revenue from department;&lt;br>
+可以用case语句进行条件判断来替换。id和月份匹配，则为对应值，不匹配则为0。&lt;/p>
+&lt;p>&lt;strong>2. 去掉0值，简化表格的行数&lt;/strong>&lt;br>
+使用分组汇总来实现。按“id”分组，然后用汇总函数（max）取出每组非零的值(也就是这个案例中的id某月对应的数值)。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Jan&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Jan_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Feb&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Feb_Revenue&lt;/span>
+&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Mar&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Mar_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Apr&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Apr_Revenue&lt;/span>
+&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;May&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">May_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Jun&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Jun_Revenue&lt;/span>
+&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Jul&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Jul_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Aug&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Aug_Revenue&lt;/span>
+&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Sep&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Sep_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Oct&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Oct_Revenue&lt;/span>
+&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Nov&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Nov_Revenue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">SUM&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">CASE&lt;/span>
+&lt;span class="k">WHEN&lt;/span> &lt;span class="k">month&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Dec&amp;#39;&lt;/span> &lt;span class="k">THEN&lt;/span> &lt;span class="n">revenue&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">Dec_Revenue&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">department&lt;/span>
+&lt;span class="k">GROUP&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">id&lt;/span>
+&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>来源：力扣（LeetCode）&lt;/p></description></item><item><title>MySQL(9)--建表，增删改</title><link>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-9%E5%BB%BA%E5%88%A0%E6%9B%B4%E6%96%B0%E8%A1%A8/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>数据类型&lt;/li>
+&lt;li>建表&lt;/li>
+&lt;li>查表&lt;/li>
+&lt;li>改表&lt;/li>
+&lt;li>删表&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="数据类型">数据类型&lt;/h2>
+&lt;h3 id="1-整数类型">1. 整数类型&lt;/h3>
+&lt;p>tinyint 1个字节&lt;br>
+smallint 2个字节 &lt;br>
+mediumint 3个字节 &lt;br>
+int integer 4个字节 (默认类型) &lt;br>
+bigint 8个字节 (时间戳)&lt;/p>
+&lt;h3 id="2-浮点类型位类型">2. 浮点类型/位类型&lt;/h3>
+&lt;p>float&lt;br>
+double (超过10位，选double)&lt;/p>
+&lt;h3 id="3-时间和日期">3. 时间和日期&lt;/h3>
+&lt;p>date 年和日&lt;br>
+datetime 年月日时分秒&lt;br>
+timestamp 时间戳&lt;br>
+time&lt;br>
+year&lt;/p>
+&lt;h3 id="4-字符串类型">4. 字符串类型&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>char系列字符串&lt;br>
+char(M) 0-225 之间的整数 char(4) (长度为4)&lt;br>
+varchar(M) 0-65535 之间的整数&lt;br>
+(需要经常发生变化，选择varchar)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>text系列字符串 - 存储大量的字符&lt;br>
+tinytext 字节： 0-225 值得长度为+2 个字节&lt;br>
+text 字节： 0-65 535 值得长度为+2 个字节&lt;br>
+mediumtext 字节： 0-167 772 150 值得长度为+3 个字节&lt;br>
+longtext 字节： 0-4 294 967 295 值得长度为+4 个字节&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>char varchar text 的区别&lt;br>
+都可以存储字符串类型的数据&lt;br>
+char varchar 可以指定最大的字符长度 text 不可以;&lt;br>
+char 自动用空格填充 varchar 不进行空格自动填充;&lt;br>
+text 存储可长度的非空 unicode 数据;&lt;br>
+一个英文一个字节，一个中文四个字节;&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="建表">建表&lt;/h2>
+&lt;h3 id="1-建表">1. 建表&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">查看所有数据库&lt;/span>
+&lt;span class="k">SHOW&lt;/span> &lt;span class="n">databases&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">进入数据库&lt;/span>
+&lt;span class="n">USE&lt;/span> &lt;span class="k">database&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">查看所有表&lt;/span>
+&lt;span class="k">SHOW&lt;/span> &lt;span class="n">tables&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">建表&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">employee&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-限制列内容-not-null">2. 限制列内容 not null&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katia&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="3-default-默认值设置">3. default 默认值设置&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaq&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;名字&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="4-设置主键">4. 设置主键&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">建表设置单一主键&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaa&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;名字&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">建表设置联合主键&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaaFavorite&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">katiaa_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">article_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;文章id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">add_time&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;收藏时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">katiaa_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">article_id&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">建表后&lt;/span>&lt;span class="n">ALTER增加主键&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaaafavorite&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">katiaaa_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">article_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;文章id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">add_time&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;收藏时间&amp;#39;&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="k">ALTER&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaaafavorite&lt;/span>
+&lt;span class="k">ADD&lt;/span> &lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">katiaaa_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">article_id&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="n">ALTER删除主键&lt;/span>
+&lt;span class="k">ALTER&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaaafavorite&lt;/span>
+&lt;span class="k">DROP&lt;/span> &lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="5-设置唯一值">5. 设置唯一值&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">建表语句设置唯一值&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaa&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">UNIQUE&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;名字&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">建表后&lt;/span>&lt;span class="n">ALTER语句增加唯一值&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaa&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">katiaa_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">article_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;文章id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">add_time&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;收藏时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">UNIQUE&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">katiaa_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">article_id&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="k">ALTER&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katiaa&lt;/span>
+&lt;span class="k">ADD&lt;/span> &lt;span class="k">UNIQUE&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">katiaa_id&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="6-自增长">6. 自增长&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>&lt;span class="err">建表设置自增长&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katia&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;用户id&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;名字&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">age&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">birthday&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">建表后更改自增长&lt;/span>
+&lt;span class="k">ALTER&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katia&lt;/span>
+&lt;span class="n">CHANGE&lt;/span> &lt;span class="k">COLUMN&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">#&lt;/span>&lt;span class="err">删除自增长&lt;/span>
+&lt;span class="k">ALTER&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">katia&lt;/span>
+&lt;span class="k">MODIFY&lt;/span> &lt;span class="k">COLUMN&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="改表">改表&lt;/h2></description></item><item><title>MySQL(10)--索引 视图</title><link>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-10%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>case when 在带条件筛选中的运用&lt;/li>
 &lt;/ul>
@@ -662,7 +1420,15 @@ table score: id, class_id, score&lt;/p>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://files.catbox.moe/dhgyoy.png" alt="">&lt;/p>
-&lt;p>&lt;a href="http://music.163.com/song/28287132/?userid=446906676">http://music.163.com/song/28287132/?userid=446906676&lt;/a>&lt;/p></description></item><item><title>MySQL(6)--select执行语句顺序</title><link>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid><description>&lt;blockquote>
+&lt;iframe
+frameborder="no"
+border="0"
+marginwidth="0"
+marginheight="0"
+width="360"
+height="86"
+src="//music.163.com/outchain/player?type=2&amp;id=28287132&amp;auto=0&amp;height=66"
+>&lt;/iframe></description></item><item><title>MySQL(6)--select执行语句顺序</title><link>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/msyql-6%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>select-&amp;gt; from-&amp;gt; where-&amp;gt; group by-&amp;gt; max()-&amp;gt; having-&amp;gt; order by&lt;/li>
 &lt;/ul>
@@ -694,18 +1460,7 @@ table score: id, class_id, score&lt;/p>
 &lt;li>计算max()聚集函数，从score中分组筛选最大数值&lt;/li>
 &lt;li>执行having子句，筛选score大于600分的数据&lt;/li>
 &lt;li>执行order by 子句，结果按照max_score列排序&lt;/li>
-&lt;/ul></description></item><item><title>MySQL(7)--表连接类型</title><link>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</guid><description>&lt;blockquote>
-&lt;ul>
-&lt;li>内连接&lt;/li>
-&lt;li>外连接&lt;/li>
-&lt;li>交叉连接&lt;/li>
-&lt;li>union,union all&lt;/li>
-&lt;/ul>
-&lt;/blockquote></description></item><item><title>MySQL(8)--行列转换</title><link>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</link><pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-8%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2/</guid><description>&lt;blockquote>
-&lt;ul>
-&lt;li>case when 运用&lt;/li>
-&lt;/ul>
-&lt;/blockquote></description></item><item><title>MySQL(1)--最值处理</title><link>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</link><pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</guid><description>&lt;blockquote>
+&lt;/ul></description></item><item><title>MySQL(1)--最值处理</title><link>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</link><pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-1%E6%9C%80%E5%80%BC%E5%A4%84%E7%90%86/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>order by + limit offset&lt;/li>
 &lt;li>大于等于 max()&lt;/li>
