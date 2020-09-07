@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Katia-blog</title><link>http://localhost:1313/</link><description>Recent content on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>http://localhost:1313/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>http://localhost:1313/about/</guid><description>&lt;p>大家好，我是张慧晴&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Katia-blog</title><link>http://localhost:1313/</link><description>Recent content on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 05 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>http://localhost:1313/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>http://localhost:1313/about/</guid><description>&lt;p>大家好，我是张慧晴&lt;/p>
 &lt;p>It makes use of a variety of open source projects including:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/spf13/cobra">Cobra&lt;/a>&lt;/li>
@@ -6,7 +6,169 @@
 &lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>MySQL(7)--多表查询</title><link>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</guid><description>&lt;blockquote>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>爬取豆瓣电影1-数据库表格存储设计</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</link><pubDate>Sat, 05 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>爬取对象, 目的&lt;/li>
+&lt;li>表格设计字段及思路&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="爬取对象">爬取对象&lt;/h2>
+&lt;ul>
+&lt;li>爬取豆瓣所有的电影基本信息&lt;/li>
+&lt;/ul>
+&lt;p>刚学会request和美味汤的我，熊心豹子胆的定下了这个目标。
+爬取过程中会遇到很多的问题，嵌套嵌套嵌到晕。俺不怵！&lt;/p>
+&lt;h2 id="爬取目的">爬取目的&lt;/h2>
+&lt;ul>
+&lt;li>以豆瓣评分为基础 分析高质量电影的类别，国家分布&lt;/li>
+&lt;li>以豆瓣评价人数为基础 分析热门电影的类别分布，国家分布&lt;/li>
+&lt;li>以豆瓣电影时间为基础 分析电影产出类别，国家分布&lt;/li>
+&lt;li>以上述结论为基础 分析电影产量和电影质量的相关性&lt;/li>
+&lt;li>以上述结论为基础 分析高质量电影和热门电影的相关性&lt;/li>
+&lt;/ul>
+&lt;h2 id="数据存储">数据存储&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>将爬取的数据存储到mysql数据库中&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>建表每个字段的数据类型确定&lt;/p>
+&lt;p>电影信息表：&lt;br>
+主键id 豆瓣id&lt;br>
+电影中文名 电影英文名&lt;br>
+年代 国家 片长 图片链接&lt;br>
+评价分数 评价人数 评价五星占比
+短评数量 长评数量&lt;/p>
+&lt;p>电影类型:&lt;br>
+主键id 豆瓣id 类型&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>一个英文一个字节，一个中文三、四个字节;&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>字段&lt;/th>
+&lt;th>格式&lt;/th>
+&lt;th>名称&lt;/th>
+&lt;th>其他&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>id&lt;/td>
+&lt;td>int&lt;/td>
+&lt;td>主键id&lt;/td>
+&lt;td>&lt;code>primary key auto_increment&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>film_id&lt;/td>
+&lt;td>int&lt;/td>
+&lt;td>豆瓣id&lt;/td>
+&lt;td>&lt;code>not null&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ch_name&lt;/td>
+&lt;td>varchar(40)&lt;/td>
+&lt;td>中文名&lt;/td>
+&lt;td>&lt;code>not null&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">
+&lt;span class="k">create&lt;/span> &lt;span class="k">table&lt;/span> &lt;span class="n">film_info&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">primary&lt;/span> &lt;span class="k">key&lt;/span> &lt;span class="n">auto_increment&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">film_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;豆瓣id&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">ch_name&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;中文名&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span> &lt;span class="p">,&lt;/span>
+&lt;span class="n">en_name&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;英文名&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">year&lt;/span> &lt;span class="k">year&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;年份&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">country&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;国家&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">film_length&lt;/span> &lt;span class="nb">smallint&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;片长&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">score&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;评分&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">five_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;五星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">four_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;四星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">three_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;三星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">two_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;二星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">one_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;一星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">score_num&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;评分人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">short_comment&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;短评人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">long_comment&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span>&lt;span class="s1">&amp;#39;长评人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">img_link&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;图片链接&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">create&lt;/span> &lt;span class="k">table&lt;/span> &lt;span class="n">film_type&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">primary&lt;/span> &lt;span class="k">key&lt;/span> &lt;span class="n">auto_increment&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">film_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;豆瓣id&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">type&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;电影类型&amp;#39;&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">pymysql&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">pandas&lt;/span> &lt;span class="kn">as&lt;/span> &lt;span class="nn">pd&lt;/span>
+&lt;span class="n">conn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pymysql&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">connect&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;localhost&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;root&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;8866&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">database&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;movie_data&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;utf8mb4&amp;#39;&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span class="s1">select * from film_info
+&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span class="n">mysql_page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_sql&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;a&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">con&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">conn&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MySQL(7)--多表查询</title><link>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</link><pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/mysql-7%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%B1%BB%E5%9E%8B/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>INNER JOIN 内连接&lt;/li>
 &lt;li>OUTER JOIN 外连接&lt;/li>
