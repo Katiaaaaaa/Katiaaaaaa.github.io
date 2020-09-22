@@ -97,16 +97,18 @@
 &lt;/span>&lt;span class="lnt">17
 &lt;/span>&lt;span class="lnt">18
 &lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">
 &lt;span class="k">create&lt;/span> &lt;span class="k">table&lt;/span> &lt;span class="n">film_info&lt;/span>&lt;span class="p">(&lt;/span>
 &lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">primary&lt;/span> &lt;span class="k">key&lt;/span> &lt;span class="n">auto_increment&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">film_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;豆瓣id&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="n">ch_name&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;中文名&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span> &lt;span class="p">,&lt;/span>
-&lt;span class="n">en_name&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;英文名&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">ch_name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">140&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;中文名&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span> &lt;span class="p">,&lt;/span>
+&lt;span class="n">en_name&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;英文名&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="k">year&lt;/span> &lt;span class="k">year&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;年份&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="n">country&lt;/span> &lt;span class="nb">char&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;国家&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">country&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;国家&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">film_length&lt;/span> &lt;span class="nb">smallint&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;片长&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">score&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;评分&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">five_portion&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;五星占比&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
@@ -117,7 +119,9 @@
 &lt;span class="n">score_num&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;评分人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">short_comment&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;短评人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">long_comment&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span>&lt;span class="s1">&amp;#39;长评人数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="n">img_link&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;图片链接&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">img_link&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">150&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;图片链接&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">uft8mb4&lt;/span>
+&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;div class="highlight">&lt;div class="chroma">
@@ -126,12 +130,14 @@
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">create&lt;/span> &lt;span class="k">table&lt;/span> &lt;span class="n">film_type&lt;/span>&lt;span class="p">(&lt;/span>
 &lt;span class="n">id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">primary&lt;/span> &lt;span class="k">key&lt;/span> &lt;span class="n">auto_increment&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="n">film_id&lt;/span> &lt;span class="nb">int&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;豆瓣id&amp;#39;&lt;/span> &lt;span class="k">not&lt;/span> &lt;span class="k">null&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="k">type&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;电影类型&amp;#39;&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="k">type&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">comment&lt;/span> &lt;span class="s1">&amp;#39;电影类型&amp;#39;&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="n">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;div class="highlight">&lt;div class="chroma">
@@ -216,22 +222,22 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">employee_id&lt;/th>
-&lt;th align="center">department_id&lt;/th>
+&lt;th style="text-align:center">employee_id&lt;/th>
+&lt;th style="text-align:center">department_id&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -239,48 +245,48 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">id&lt;/th>
-&lt;th align="center">employee_id&lt;/th>
-&lt;th align="center">amount&lt;/th>
-&lt;th align="center">pay_date&lt;/th>
+&lt;th style="text-align:center">id&lt;/th>
+&lt;th style="text-align:center">employee_id&lt;/th>
+&lt;th style="text-align:center">amount&lt;/th>
+&lt;th style="text-align:center">pay_date&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">9000&lt;/td>
-&lt;td align="center">2017-03-31&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">9000&lt;/td>
+&lt;td style="text-align:center">2017-03-31&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">6000&lt;/td>
-&lt;td align="center">2017-03-31&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
+&lt;td style="text-align:center">2017-03-31&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">10000&lt;/td>
-&lt;td align="center">2017-03-31&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">10000&lt;/td>
+&lt;td style="text-align:center">2017-03-31&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">7000&lt;/td>
-&lt;td align="center">2017-02-28&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">7000&lt;/td>
+&lt;td style="text-align:center">2017-02-28&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">6000&lt;/td>
-&lt;td align="center">2017-02-28&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
+&lt;td style="text-align:center">2017-02-28&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">6&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">8000&lt;/td>
-&lt;td align="center">2017-02-28&lt;/td>
+&lt;td style="text-align:center">6&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">8000&lt;/td>
+&lt;td style="text-align:center">2017-02-28&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -300,41 +306,41 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">employee_id&lt;/th>
-&lt;th align="center">department_id&lt;/th>
-&lt;th align="center">amount&lt;/th>
+&lt;th style="text-align:center">employee_id&lt;/th>
+&lt;th style="text-align:center">department_id&lt;/th>
+&lt;th style="text-align:center">amount&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">9000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">9000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">6000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">10000&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">10000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">7000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">7000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">6000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">8000&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">8000&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -461,30 +467,30 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">id&lt;/th>
-&lt;th align="center">student&lt;/th>
+&lt;th style="text-align:center">id&lt;/th>
+&lt;th style="text-align:center">student&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">Abbot&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">Abbot&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">Doris&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">Doris&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">Emerson&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">Emerson&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">Green&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">Green&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">Jeames&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">Jeames&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -527,36 +533,36 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">id&lt;/th>
-&lt;th align="center">revenue&lt;/th>
-&lt;th align="center">month&lt;/th>
+&lt;th style="text-align:center">id&lt;/th>
+&lt;th style="text-align:center">revenue&lt;/th>
+&lt;th style="text-align:center">month&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">8000&lt;/td>
-&lt;td align="center">Jan&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">8000&lt;/td>
+&lt;td style="text-align:center">Jan&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">9000&lt;/td>
-&lt;td align="center">Jan&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">9000&lt;/td>
+&lt;td style="text-align:center">Jan&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">10000&lt;/td>
-&lt;td align="center">Feb&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">10000&lt;/td>
+&lt;td style="text-align:center">Feb&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">7000&lt;/td>
-&lt;td align="center">Feb&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">7000&lt;/td>
+&lt;td style="text-align:center">Feb&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">6000&lt;/td>
-&lt;td align="center">Mar&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
+&lt;td style="text-align:center">Mar&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -565,38 +571,38 @@ employee:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">id&lt;/th>
-&lt;th align="center">Jan_Revenue&lt;/th>
-&lt;th align="center">Feb_Revenue&lt;/th>
-&lt;th align="center">Mar_Revenue&lt;/th>
-&lt;th align="center">&amp;hellip;&lt;/th>
-&lt;th align="center">Dec_Revenue&lt;/th>
+&lt;th style="text-align:center">id&lt;/th>
+&lt;th style="text-align:center">Jan_Revenue&lt;/th>
+&lt;th style="text-align:center">Feb_Revenue&lt;/th>
+&lt;th style="text-align:center">Mar_Revenue&lt;/th>
+&lt;th style="text-align:center">&amp;hellip;&lt;/th>
+&lt;th style="text-align:center">Dec_Revenue&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">8000&lt;/td>
-&lt;td align="center">7000&lt;/td>
-&lt;td align="center">6000&lt;/td>
-&lt;td align="center">&amp;hellip;&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">8000&lt;/td>
+&lt;td style="text-align:center">7000&lt;/td>
+&lt;td style="text-align:center">6000&lt;/td>
+&lt;td style="text-align:center">&amp;hellip;&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">9000&lt;/td>
-&lt;td align="center">null&lt;/td>
-&lt;td align="center">null&lt;/td>
-&lt;td align="center">&amp;hellip;&lt;/td>
-&lt;td align="center">null&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">9000&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
+&lt;td style="text-align:center">&amp;hellip;&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">null&lt;/td>
-&lt;td align="center">10000&lt;/td>
-&lt;td align="center">null&lt;/td>
-&lt;td align="center">&amp;hellip;&lt;/td>
-&lt;td align="center">null&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
+&lt;td style="text-align:center">10000&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
+&lt;td style="text-align:center">&amp;hellip;&lt;/td>
+&lt;td style="text-align:center">null&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1282,141 +1288,141 @@ row_number() 依次排名递增&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">empno&lt;/th>
-&lt;th align="center">ename&lt;/th>
-&lt;th align="center">deptno&lt;/th>
-&lt;th align="center">sal&lt;/th>
-&lt;th align="center">num&lt;/th>
-&lt;th align="center">rank&lt;/th>
-&lt;th align="center">dense_rank&lt;/th>
+&lt;th style="text-align:center">empno&lt;/th>
+&lt;th style="text-align:center">ename&lt;/th>
+&lt;th style="text-align:center">deptno&lt;/th>
+&lt;th style="text-align:center">sal&lt;/th>
+&lt;th style="text-align:center">num&lt;/th>
+&lt;th style="text-align:center">rank&lt;/th>
+&lt;th style="text-align:center">dense_rank&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">7839&lt;/td>
-&lt;td align="center">KING&lt;/td>
-&lt;td align="center">10&lt;/td>
-&lt;td align="center">5000.00&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">7839&lt;/td>
+&lt;td style="text-align:center">KING&lt;/td>
+&lt;td style="text-align:center">10&lt;/td>
+&lt;td style="text-align:center">5000.00&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7782&lt;/td>
-&lt;td align="center">CLARK&lt;/td>
-&lt;td align="center">10&lt;/td>
-&lt;td align="center">2450.00&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">7782&lt;/td>
+&lt;td style="text-align:center">CLARK&lt;/td>
+&lt;td style="text-align:center">10&lt;/td>
+&lt;td style="text-align:center">2450.00&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7934&lt;/td>
-&lt;td align="center">MILLER&lt;/td>
-&lt;td align="center">10&lt;/td>
-&lt;td align="center">1300.00&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
+&lt;td style="text-align:center">7934&lt;/td>
+&lt;td style="text-align:center">MILLER&lt;/td>
+&lt;td style="text-align:center">10&lt;/td>
+&lt;td style="text-align:center">1300.00&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7788&lt;/td>
-&lt;td align="center">SCOTT&lt;/td>
-&lt;td align="center">20&lt;/td>
-&lt;td align="center">3000.00&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">7788&lt;/td>
+&lt;td style="text-align:center">SCOTT&lt;/td>
+&lt;td style="text-align:center">20&lt;/td>
+&lt;td style="text-align:center">3000.00&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7902&lt;/td>
-&lt;td align="center">FORD&lt;/td>
-&lt;td align="center">20&lt;/td>
-&lt;td align="center">3000.00&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">7902&lt;/td>
+&lt;td style="text-align:center">FORD&lt;/td>
+&lt;td style="text-align:center">20&lt;/td>
+&lt;td style="text-align:center">3000.00&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7566&lt;/td>
-&lt;td align="center">JONES&lt;/td>
-&lt;td align="center">20&lt;/td>
-&lt;td align="center">2975.00&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">7566&lt;/td>
+&lt;td style="text-align:center">JONES&lt;/td>
+&lt;td style="text-align:center">20&lt;/td>
+&lt;td style="text-align:center">2975.00&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7876&lt;/td>
-&lt;td align="center">ADAMS&lt;/td>
-&lt;td align="center">20&lt;/td>
-&lt;td align="center">1100.00&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">3&lt;/td>
+&lt;td style="text-align:center">7876&lt;/td>
+&lt;td style="text-align:center">ADAMS&lt;/td>
+&lt;td style="text-align:center">20&lt;/td>
+&lt;td style="text-align:center">1100.00&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7369&lt;/td>
-&lt;td align="center">SMITH&lt;/td>
-&lt;td align="center">20&lt;/td>
-&lt;td align="center">800.00&lt;/td>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">4&lt;/td>
+&lt;td style="text-align:center">7369&lt;/td>
+&lt;td style="text-align:center">SMITH&lt;/td>
+&lt;td style="text-align:center">20&lt;/td>
+&lt;td style="text-align:center">800.00&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7698&lt;/td>
-&lt;td align="center">BLAKE&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">2850.00&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">7698&lt;/td>
+&lt;td style="text-align:center">BLAKE&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">2850.00&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7499&lt;/td>
-&lt;td align="center">ALLEN&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">1600.00&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">7499&lt;/td>
+&lt;td style="text-align:center">ALLEN&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">1600.00&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7844&lt;/td>
-&lt;td align="center">TURNER&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">1500.00&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
+&lt;td style="text-align:center">7844&lt;/td>
+&lt;td style="text-align:center">TURNER&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">1500.00&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7521&lt;/td>
-&lt;td align="center">WARD&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">1250.00&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">4&lt;/td>
+&lt;td style="text-align:center">7521&lt;/td>
+&lt;td style="text-align:center">WARD&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">1250.00&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7654&lt;/td>
-&lt;td align="center">MARTIN&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">1250.00&lt;/td>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">4&lt;/td>
+&lt;td style="text-align:center">7654&lt;/td>
+&lt;td style="text-align:center">MARTIN&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">1250.00&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7900&lt;/td>
-&lt;td align="center">JAMES&lt;/td>
-&lt;td align="center">30&lt;/td>
-&lt;td align="center">950.00&lt;/td>
-&lt;td align="center">6&lt;/td>
-&lt;td align="center">6&lt;/td>
-&lt;td align="center">5&lt;/td>
+&lt;td style="text-align:center">7900&lt;/td>
+&lt;td style="text-align:center">JAMES&lt;/td>
+&lt;td style="text-align:center">30&lt;/td>
+&lt;td style="text-align:center">950.00&lt;/td>
+&lt;td style="text-align:center">6&lt;/td>
+&lt;td style="text-align:center">6&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1651,22 +1657,22 @@ src="//music.163.com/outchain/player?type=2&amp;id=28287132&amp;auto=0&amp;heigh
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">&lt;center>Id&lt;/center>&lt;/th>
-&lt;th align="center">&lt;center>Salary &lt;/center>&lt;/th>
+&lt;th style="text-align:center">&lt;center>Id&lt;/center>&lt;/th>
+&lt;th style="text-align:center">&lt;center>Salary &lt;/center>&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">100&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">100&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">200&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">200&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">300&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">300&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1728,36 +1734,36 @@ src="//music.163.com/outchain/player?type=2&amp;id=28287132&amp;auto=0&amp;heigh
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">Id&lt;/th>
-&lt;th align="center">Name&lt;/th>
-&lt;th align="center">Salary&lt;/th>
-&lt;th align="center">DepartmentId&lt;/th>
+&lt;th style="text-align:center">Id&lt;/th>
+&lt;th style="text-align:center">Name&lt;/th>
+&lt;th style="text-align:center">Salary&lt;/th>
+&lt;th style="text-align:center">DepartmentId&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">Joe&lt;/td>
-&lt;td align="center">70000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">Joe&lt;/td>
+&lt;td style="text-align:center">70000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">Henry&lt;/td>
-&lt;td align="center">80000&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">Henry&lt;/td>
+&lt;td style="text-align:center">80000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">Sam&lt;/td>
-&lt;td align="center">60000&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">Sam&lt;/td>
+&lt;td style="text-align:center">60000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">Max&lt;/td>
-&lt;td align="center">90000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">Max&lt;/td>
+&lt;td style="text-align:center">90000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1765,18 +1771,18 @@ src="//music.163.com/outchain/player?type=2&amp;id=28287132&amp;auto=0&amp;heigh
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">Id&lt;/th>
-&lt;th align="center">Name&lt;/th>
+&lt;th style="text-align:center">Id&lt;/th>
+&lt;th style="text-align:center">Name&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">IT&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">IT&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">Sales&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">Sales&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1822,86 +1828,86 @@ Traffic 表：&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">&lt;center>user_id&lt;/center>&lt;/th>
-&lt;th align="center">&lt;center>activity&lt;/center>&lt;/th>
-&lt;th align="center">&lt;center>activity_date &lt;/center>&lt;/th>
+&lt;th style="text-align:center">&lt;center>user_id&lt;/center>&lt;/th>
+&lt;th style="text-align:center">&lt;center>activity&lt;/center>&lt;/th>
+&lt;th style="text-align:center">&lt;center>activity_date &lt;/center>&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-05-01&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-05-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">homepage&lt;/td>
-&lt;td align="center">2019-05-01&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">homepage&lt;/td>
+&lt;td style="text-align:center">2019-05-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-05-01&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-05-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-01-01&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-01-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">jobs&lt;/td>
-&lt;td align="center">2019-01-01&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">jobs&lt;/td>
+&lt;td style="text-align:center">2019-01-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-01-01&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-01-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">groups&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">groups&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-03-01&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-03-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-03-01&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-03-01&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">login&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">login&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">logout&lt;/td>
-&lt;td align="center">2019-06-21&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">logout&lt;/td>
+&lt;td style="text-align:center">2019-06-21&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -2034,26 +2040,26 @@ timetype = &amp;lsquo;day&amp;rsquo;,&amp;lsquo;hour&amp;rsquo;,&amp;lsquo;secon
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">product_id&lt;/th>
-&lt;th align="center">product_name&lt;/th>
-&lt;th align="center">unit_price&lt;/th>
+&lt;th style="text-align:center">product_id&lt;/th>
+&lt;th style="text-align:center">product_name&lt;/th>
+&lt;th style="text-align:center">unit_price&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">S8&lt;/td>
-&lt;td align="center">1000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">S8&lt;/td>
+&lt;td style="text-align:center">1000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">G4&lt;/td>
-&lt;td align="center">800&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">G4&lt;/td>
+&lt;td style="text-align:center">800&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">iPhone&lt;/td>
-&lt;td align="center">1400&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">iPhone&lt;/td>
+&lt;td style="text-align:center">1400&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -2061,46 +2067,46 @@ timetype = &amp;lsquo;day&amp;rsquo;,&amp;lsquo;hour&amp;rsquo;,&amp;lsquo;secon
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">seller_id&lt;/th>
-&lt;th align="center">product_id&lt;/th>
-&lt;th align="center">buyer_id&lt;/th>
-&lt;th align="center">sale_date&lt;/th>
-&lt;th align="center">quantity&lt;/th>
-&lt;th align="center">price&lt;/th>
+&lt;th style="text-align:center">seller_id&lt;/th>
+&lt;th style="text-align:center">product_id&lt;/th>
+&lt;th style="text-align:center">buyer_id&lt;/th>
+&lt;th style="text-align:center">sale_date&lt;/th>
+&lt;th style="text-align:center">quantity&lt;/th>
+&lt;th style="text-align:center">price&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">2019-01-21&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">2019-01-21&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2000&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2019-02-17&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">800&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2019-02-17&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">800&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">2019-06-02&lt;/td>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">800&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">2019-06-02&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">800&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">2019-05-13&lt;/td>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">2800&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">2019-05-13&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">2800&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -2191,54 +2197,54 @@ timetype = &amp;lsquo;day&amp;rsquo;,&amp;lsquo;hour&amp;rsquo;,&amp;lsquo;secon
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">Id&lt;/th>
-&lt;th align="center">Name&lt;/th>
-&lt;th align="center">Salary&lt;/th>
-&lt;th align="center">DepartmentId&lt;/th>
+&lt;th style="text-align:center">Id&lt;/th>
+&lt;th style="text-align:center">Name&lt;/th>
+&lt;th style="text-align:center">Salary&lt;/th>
+&lt;th style="text-align:center">DepartmentId&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">Joe&lt;/td>
-&lt;td align="center">85000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">Joe&lt;/td>
+&lt;td style="text-align:center">85000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">Henry&lt;/td>
-&lt;td align="center">80000&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">Henry&lt;/td>
+&lt;td style="text-align:center">80000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">3&lt;/td>
-&lt;td align="center">Sam&lt;/td>
-&lt;td align="center">60000&lt;/td>
-&lt;td align="center">2&lt;/td>
+&lt;td style="text-align:center">3&lt;/td>
+&lt;td style="text-align:center">Sam&lt;/td>
+&lt;td style="text-align:center">60000&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">4&lt;/td>
-&lt;td align="center">Max&lt;/td>
-&lt;td align="center">90000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">4&lt;/td>
+&lt;td style="text-align:center">Max&lt;/td>
+&lt;td style="text-align:center">90000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">5&lt;/td>
-&lt;td align="center">Janet&lt;/td>
-&lt;td align="center">69000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
+&lt;td style="text-align:center">Janet&lt;/td>
+&lt;td style="text-align:center">69000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">6&lt;/td>
-&lt;td align="center">Randy&lt;/td>
-&lt;td align="center">85000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">6&lt;/td>
+&lt;td style="text-align:center">Randy&lt;/td>
+&lt;td style="text-align:center">85000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">7&lt;/td>
-&lt;td align="center">Will&lt;/td>
-&lt;td align="center">70000&lt;/td>
-&lt;td align="center">1&lt;/td>
+&lt;td style="text-align:center">7&lt;/td>
+&lt;td style="text-align:center">Will&lt;/td>
+&lt;td style="text-align:center">70000&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -2246,18 +2252,18 @@ timetype = &amp;lsquo;day&amp;rsquo;,&amp;lsquo;hour&amp;rsquo;,&amp;lsquo;secon
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th align="center">Id&lt;/th>
-&lt;th align="center">Name&lt;/th>
+&lt;th style="text-align:center">Id&lt;/th>
+&lt;th style="text-align:center">Name&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td align="center">1&lt;/td>
-&lt;td align="center">IT&lt;/td>
+&lt;td style="text-align:center">1&lt;/td>
+&lt;td style="text-align:center">IT&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td align="center">2&lt;/td>
-&lt;td align="center">Sales&lt;/td>
+&lt;td style="text-align:center">2&lt;/td>
+&lt;td style="text-align:center">Sales&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>

@@ -138,25 +138,25 @@ section 发布验收
 &lt;thead>
 &lt;tr>
 &lt;th>项目&lt;/th>
-&lt;th align="right">价格&lt;/th>
-&lt;th align="center">数量&lt;/th>
+&lt;th style="text-align:right">价格&lt;/th>
+&lt;th style="text-align:center">数量&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
 &lt;td>计算机&lt;/td>
-&lt;td align="right">$1600&lt;/td>
-&lt;td align="center">5&lt;/td>
+&lt;td style="text-align:right">$1600&lt;/td>
+&lt;td style="text-align:center">5&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>手机&lt;/td>
-&lt;td align="right">$12&lt;/td>
-&lt;td align="center">12&lt;/td>
+&lt;td style="text-align:right">$12&lt;/td>
+&lt;td style="text-align:center">12&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>管线&lt;/td>
-&lt;td align="right">$1&lt;/td>
-&lt;td align="center">234&lt;/td>
+&lt;td style="text-align:right">$1&lt;/td>
+&lt;td style="text-align:center">234&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
