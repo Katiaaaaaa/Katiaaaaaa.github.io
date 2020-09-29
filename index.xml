@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Katia-blog</title><link>http://localhost:1313/</link><description>Recent content on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 05 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>http://localhost:1313/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>http://localhost:1313/about/</guid><description>&lt;p>大家好，我是张慧晴&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Katia-blog</title><link>http://localhost:1313/</link><description>Recent content on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 28 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>http://localhost:1313/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>http://localhost:1313/about/</guid><description>&lt;p>大家好，我是张慧晴&lt;/p>
 &lt;p>It makes use of a variety of open source projects including:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/spf13/cobra">Cobra&lt;/a>&lt;/li>
@@ -6,7 +6,68 @@
 &lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>爬取豆瓣电影1-数据库表格存储设计</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</link><pubDate>Sat, 05 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</guid><description>&lt;blockquote>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>爬取豆瓣电影2-初步分析结论</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B12-%E5%88%9D%E6%AD%A5%E5%88%86%E6%9E%90%E7%BB%93%E8%AE%BA/</link><pubDate>Mon, 28 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B12-%E5%88%9D%E6%AD%A5%E5%88%86%E6%9E%90%E7%BB%93%E8%AE%BA/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>豆瓣数据分析&lt;/li>
+&lt;li>分析结果绘图&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="分析总体概况">分析总体概况&lt;/h2>
+&lt;h3 id="电影产量的国家分布">电影产量的国家分布&lt;/h3>
+&lt;p>以美国为首电影数量最多的前10个国家
+-美国产量遥遥领先，其次是产量大国是中国及日本欧美&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8Ka3.png" alt="">&lt;/p>
+&lt;h3 id="电影产量的年代分布">电影产量的年代分布&lt;/h3>
+&lt;p>-除开今年外最近的十年，电影产量的分布基本与时间吻合，目前收录最多的是2016年，最少的为1911年&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kym.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8Kan.png" alt="">&lt;/p>
+&lt;h3 id="电影类型的分布">电影类型的分布&lt;/h3>
+&lt;p>-其中剧情电影占主导，其次是喜剧，爱情，动作。&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8KaB.png" alt="">&lt;/p>
+&lt;h3 id="电影评分分布">电影评分分布&lt;/h3>
+&lt;ul>
+&lt;li>电影平均分 6.91,其中高分电影（8分以上）占比 17.6%, 低分电影 （6分以下）占比 19.2%.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kyi.png" alt="">&lt;/p>
+&lt;p>-分数分布最多在7.5，最低分数电影和最高分数电影由于观看人数少评分有一定的偏差&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8Ka8.png" alt="">&lt;/p>
+&lt;h3 id="电影评价人数的分布">电影评价人数的分布&lt;/h3>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8Kaa.png" alt="">&lt;br>
+-评价人数的分布非常的不均衡，方差巨大，其中最大值有两百万，而最小值是26&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kz0.png" alt="">&lt;/p>
+&lt;p>评分人数超过100万的电影目前只有31部,其中超过150万的电影只有下图的十部。
+近十年只有三部电影，有如此大的热度，中国有两部。对比90年代，从1/5的占比上升到了3/10。
+另一个侧面也反映了经典电影的影响久远，并未随着时间而被人遗忘
+&lt;img src="https://i.niupic.com/images/2020/09/29/8KyE.png" alt="">&lt;/p>
+&lt;h2 id="分析大众电影的特点">分析大众电影的特点&lt;/h2>
+&lt;blockquote>
+&lt;p>电影国家，类型对大众电影的热门程度影响不明显&lt;/p>
+&lt;/blockquote>
+&lt;p>-以评分人数为指标，将电影人数分层，统计了每个层次电影数量前5个国家的电影数量。&lt;/p>
+&lt;blockquote>
+&lt;p>可以观察到由于美国和国内的电影基数较大，在每个层次占比均在前位。同样，对于类型而言，剧情，喜剧，动作基数大，在每个分层都占据主导地位&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kzn.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kzo.png" alt="">&lt;/p>
+&lt;h3 id="电影的热门程度和国家的关系">电影的热门程度和国家的关系&lt;/h3>
+&lt;p>-所有国家平均电影数量为525部，评价均分较高的国家的电影数量均较低。
+(已经剔除了电影数量小于30,且评论人数小于500的电影)&lt;/p>
+&lt;blockquote>
+&lt;p>日本，法国，英国的电影质量比较有代表性，同时也是电影产量前十国家。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/28/8KaS.png" alt="">&lt;/p>
+&lt;h3 id="电影的热门程度和类型的关系">电影的热门程度和类型的关系&lt;/h3>
+&lt;p>评价人数最多五种的电影类型
+&lt;img src="https://i.niupic.com/images/2020/09/29/8Kb8.png" alt="">&lt;/p>
+&lt;p>评分最高的五种电影类型
+&lt;img src="https://i.niupic.com/images/2020/09/29/8Kb9.png" alt="">&lt;/p>
+&lt;h2 id="分析国内电影发展趋势">分析国内电影发展趋势&lt;/h2>
+&lt;h3 id="数量上是增长的趋势吗">数量上是增长的趋势吗&lt;/h3>
+&lt;p>中国电影数量在连年递增&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8KbD.png" alt="">&lt;/p>
+&lt;h3 id="质量上是向优质发展吗">质量上是向优质发展吗&lt;/h3>
+&lt;p>但电影质量不尽如人意&lt;/p>
+&lt;p>&lt;img src="https://i.niupic.com/images/2020/09/29/8Kzi.png" alt="">&lt;/p></description></item><item><title>爬取豆瓣电影1-数据库表格存储设计</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</link><pubDate>Sat, 05 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>爬取对象, 目的&lt;/li>
 &lt;li>表格设计字段及思路&lt;/li>
