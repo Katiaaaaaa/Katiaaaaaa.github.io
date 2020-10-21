@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pandas on Katia-blog</title><link>http://localhost:1313/categories/pandas/</link><description>Recent content in Pandas on Katia-blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/pandas/index.xml" rel="self" type="application/rss+xml"/><item><title>pandas 数据清洗</title><link>http://localhost:1313/post/pandas_%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E5%AE%9E%E6%88%98/</link><pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/pandas_%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E5%AE%9E%E6%88%98/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>日期函数&lt;/li>
+&lt;li>文本函数&lt;/li>
+&lt;li>逻辑函数&lt;/li>
+&lt;li>统计函数&lt;/li>
+&lt;li>查找引用函数&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Pandas(1)--读取创建</title><link>http://localhost:1313/post/pandas_01_%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE/</link><pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/pandas_01_%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>
+&lt;ol>
+&lt;li>数据读取保存&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="2">
+&lt;li>数据创建&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Pandas(2)--查询数据</title><link>http://localhost:1313/post/pandas_02_%E6%9F%A5%E8%AF%A2/</link><pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/pandas_02_%E6%9F%A5%E8%AF%A2/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>
+&lt;ol>
+&lt;li>iloc 行列数字位置&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="2">
+&lt;li>loc 行列标签值 既能查询又能覆盖&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="3">
+&lt;li>df[]查询&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="4">
+&lt;li>df.at df.iat 单元格查询&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item></channel></rss>

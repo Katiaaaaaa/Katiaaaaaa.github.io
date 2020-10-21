@@ -3,7 +3,13 @@
 &lt;li>豆瓣数据分析&lt;/li>
 &lt;li>分析结果绘图&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item><item><title>爬取豆瓣电影1-数据库表格存储设计</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</link><pubDate>Sat, 05 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>爬取豆瓣电影1--爬虫总结</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E7%88%AC%E8%99%AB%E6%80%BB%E7%BB%93/</link><pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B11-%E7%88%AC%E8%99%AB%E6%80%BB%E7%BB%93/</guid><description>&lt;blockquote>
+&lt;ul>
+&lt;li>美味汤使用方法&lt;/li>
+&lt;li>定位标签&lt;/li>
+&lt;li>获取内容&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>爬取豆瓣电影1-数据库表格存储设计</title><link>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B13-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</link><pubDate>Sat, 05 Sep 2020 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B13-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E8%AE%BE%E8%AE%A1/</guid><description>&lt;blockquote>
 &lt;ul>
 &lt;li>爬取对象, 目的&lt;/li>
 &lt;li>表格设计字段及思路&lt;/li>
