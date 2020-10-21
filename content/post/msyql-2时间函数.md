@@ -28,7 +28,8 @@ Where a.amount > b.amount；
 
 ## 日期格式
 
-**DATE_FORMA(date, format)**
+**DATE_FORMA(date, format)** 日期格式转换成字符串
+**str_to_data** 字符串转换成日期格式
 
 ```sql
 date_format(pay_date,'%Y-%m') as pay_month

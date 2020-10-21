@@ -8,6 +8,7 @@ author: "Katia"
 
 
 > * select-> from-> where-> group by-> max()-> having-> order by
+
 <!--more-->
 ```sql
 select name, max(score) as max_score 

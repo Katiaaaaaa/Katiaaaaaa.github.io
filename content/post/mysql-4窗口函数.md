@@ -126,12 +126,12 @@ str_to_date() 将字符转换成日期
 select Year(now());
 select Year(first_login) from players;
 ```
-monthname:以英文的形式返回月
+### **4.monthname:以英文的形式返回月**
 ```sql
 select monthname(first_login) from players;
 ```
-### **4.获取时间间隔**  
-datediff()  
+### **5.获取时间间隔**  
+datediff(date1,date2) date2-date1  
 tiemstamp()
 
 
@@ -277,7 +277,6 @@ rank为RANK()函数产生的序号，rows为当前窗口的记录总行数。
 ### **5. 其他函数**
 nth_value(expr,n)/nfile(n）
 
-
 * nth_value(expr,n)  
 用途：返回窗口中第N个expr的值，expr可以是表达式，也可以是列名。
 应用场景：每个用户订单中显示本用户金额排名第二和第三的订单金额。  
@@ -285,6 +284,15 @@ nth_value(expr,n)/nfile(n）
 * nfile(n)  
 用途：将分区中的有序数据分为n个桶，记录桶号。  
 应用场景：将每个用户的订单按照订单金额分成3组。
+mysql> SELECT
+    -> NTILE(3) OVER w AS nf,
+    -> stu_id, lesson_id, score
+    -> FROM t_score
+    -> WHERE lesson_id IN ('L001','L002')
+    -> WINDOW w AS (PARTITION BY lesson_id ORDER BY score)
+    -> ;
+
+
 
 ### **6. 聚合函数作为窗口函数**  
 用途：在窗口中每条记录动态应用聚合函数(sum/avg/max/min/count)，可以动态计算在指定的窗口内的各种聚合函数值。  
@@ -300,4 +308,4 @@ count(amount) over w as count1
 from order
 window w as (partition by user_no order by order_id)) t;
 ```
-
+参考链接：http://www.cnblogs.com/DataArt/p/9961676.html

@@ -13,6 +13,7 @@ author: "Katia"
 > * 查表
 > * 改表
 > * 删表
+
 <!--more-->
 
 
@@ -168,4 +169,27 @@ ALTER TABLE katia
 ALTER TABLE katia
 	MODIFY COLUMN id int;
 ```
-## 改表
+## 7. 改表
+```sql 
+-- 删除列
+ALTER TABLE vendors DROP COLUMN vend_phone;
+
+-- 添加列：
+ALTER TABLE vendors ADD vend_phone CHAR(20);
+
+-- 删除表及结构
+DROP TABLE customers;
+-- 执行语句将永久删除该表
+
+-- 表重命名
+RENAME TABLE  customer TO customers2; 
+ alter table film rename to filmm;
+
+-- 修改行内容
+UPDATE customers
+SET cust_email = 'elmer@fudd.com' WHERE cust_id = 10005;
+
+-- delete 删除一行
+DELETE FROM customers WHERE cust_id = 10006; 
+-- 若没有WHERE语句，则删除表中每个客户
+```
