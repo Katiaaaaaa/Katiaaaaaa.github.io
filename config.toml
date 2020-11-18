@@ -9,7 +9,7 @@ PygmentsOptions = "linenos=table"  # show line no
 
 
 
-baseURL = "http://localhost:1313/"
+baseURL = "https://katiaaaaaa.github.io"
 title = "Katia-blog"
 enableRobotsTXT = true
 enableEmoji = true
